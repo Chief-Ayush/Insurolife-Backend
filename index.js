@@ -3,9 +3,8 @@ const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
-const port = 4000;
-const MONGODB_URI =
-  "mongodb+srv://attardeayush:zHxtPZOgyoSouHGY@insurolife.mrj9r.mongodb.net/?retryWrites=true&w=majority&appName=Insurolife";
+const PORT = process.env.PORT || 4000;
+const MONGODB_URI = process.env.MONGODB_URI;
 const companyRoute = require("./routes/company.js");
 const hospitalRoute = require("./routes/hospital.js");
 const userRoute = require("./routes/user.js");
@@ -63,9 +62,9 @@ app.post("/s3url", async (req, res) => {
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
-    app.listen(port, () => {
-      console.log(`App Listening on the port ${port}`);
-    });
+    app.listen(PORT, () => {
+  console.log(`App Listening on the port ${PORT}`);
+});
   })
   .catch(console.error(), () => {
     console.log(Error);
